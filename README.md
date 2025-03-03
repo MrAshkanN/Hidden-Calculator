@@ -1,16 +1,30 @@
-# hidden_app
+# HiddenCalculator
 
-A new Flutter project.
+HiddenCalculator is a secure calculator app that allows users to hide and encrypt files behind a simple calculator interface. The app provides a password-protected section where users can securely store and manage their sensitive files.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- **Basic Calculator Functionality**: Perform simple mathematical calculations.
+- **Password Protection**: Access the hidden files section with a password.
+- **File Hiding**: Store files securely in the app.
+- **Encryption (optional)**: Encrypt files to ensure security.
 
-A few resources to get you started if this is your first Flutter project:
+## Technologies Used
+- **Flutter**: Cross-platform development.
+- **Dart**: Programming language for Flutter.
+- **File Encryption**: (optional, if implemented) Ensures data security for hidden files.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## How to Use
+1. Launch the app and use the calculator for basic calculations.
+2. To access the hidden files, tap the designated button and enter the password.
+3. Store, retrieve, or manage hidden files securely behind the password-protected section.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Setup Instructions
+
+### Prerequisites
+- Install **Flutter** and **Dart** SDKs on your machine.
+- Android Studio or Visual Studio Code for development.
+
+### Clone the repository:
+```bash
+git clone https://github.com/MrAshkanN/Hidden-Calculator-.git
