@@ -1,0 +1,68 @@
+# This file configures the analyzer, which statically analyzes Dart code to
+# check for errors, warnings, and lints.
+#
+# The issues identified by the analyzer are surfaced in the UI of Dart-enabled
+# IDEs (https://dart.dev/tools#ides-and-editors). The analyzer can also be
+# invoked from the command line by running `flutter analyze`.
+
+# The following line activates a set of recommended lints for Flutter apps,
+# packages, and plugins designed to encourage good coding practices.
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  # The lint rules applied to this project can be customized in the
+  # section below to disable rules from the `package:flutter_lints/flutter.yaml`
+  # included above or to enable additional rules. A list of all available lints
+  # and their documentation is published at https://dart.dev/lints.
+  #
+  # Instead of disabling a lint rule for the entire project in the
+  # section below, it can also be suppressed for a single line of code
+  # or a specific dart file by using the `// ignore: name_of_lint` and
+  # `// ignore_for_file: name_of_lint` syntax on the line or in the file
+  # producing the lint.
+  rules:
+    # قواعدی که باید رعایت بشه برای افزایش کیفیت کد
+    always_declare_return_types: true
+    avoid_print: true
+    camel_case_types: true
+    constant_identifier_names: true
+    empty_catches: false
+    prefer_final_fields: true
+    prefer_final_locals: true
+    prefer_const_constructors: true
+    prefer_const_declarations: true
+    prefer_is_empty: true
+    prefer_single_quotes: true
+    unnecessary_new: true
+    unnecessary_this: true
+    # از تعریف‌های redundant جلوگیری می‌کنه
+    unnecessary_getters_setters: true
+    # استفاده از متغیرهای unused رو نشان می‌ده
+    unused_local_variable: true
+    # خطا در صورت استفاده از async در متدهای غیر async
+    await_only_futures: true
+
+analyzer:
+  errors:
+    # اینجا می‌تونید تعیین کنید چه نوع مشکلاتی بررسی بشه
+    hint: true
+    warning: true
+    error: true
+
+  exclude:
+    # فایل‌هایی که نباید بررسی بشه (مثل فایل‌های اتوماتیک تولید شده)
+    - lib/generated_plugin_registrant.dart
+    - lib/**/generated_plugin_registrant.dart
+    # - **/*.g.dart
+
+  # بررسی فایل‌ها و دایرکتوری‌های خاص
+  include:
+    - lib/**
+    - test/**
+
+# تنظیمات مربوط به تنظیمات پیکربندی فلاتر برای هر بخش از کد
+flutter:
+  # این بخش فقط برای اطلاع‌رسانی به فلاتر است که متدهایی که نخوانده‌اند یا هیچ تاثیری ندارند باید گزارش بشه
+  sdk:
+    # فلاتر به طور خودکار نسخه‌های جدید رو بررسی می‌کنه
+    minimum_sdk_version: 2.18.0
