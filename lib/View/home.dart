@@ -21,6 +21,34 @@ class Home extends StatelessWidget {
               title: mathController.historyText.value,
               balance: mathController.displayText.value,
             ),
+            const SizedBox(height: 10),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: InkWell(
+                onTap: () {
+                  mathController.backspace();
+                },
+                child: CustomPaint(
+                  painter: BorderShapeRemove(),
+                  child: ClipPath(
+                    clipper: ShapeRemove(),
+                    child: Container(
+                      width: 80,
+                      height: 40,
+                      padding: const EdgeInsets.only(right: 5),
+                      decoration: const BoxDecoration(
+                        color: Color.fromARGB(255, 200, 199, 199),
+                      ),
+                      child: const Align(
+                          alignment: Alignment.centerRight,
+                          child: Icon(
+                            Icons.close,
+                          )),
+                    ),
+                  ),
+                ),
+              ),
+            ),
             Expanded(
               child: Align(
                 alignment: Alignment.bottomCenter,
@@ -258,6 +286,56 @@ class LinePainter extends CustomPainter {
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
+    return false;
+  }
+}
+
+class ShapeRemove extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    final path = Path();
+
+    path.moveTo(0, size.height / 2);
+    path.lineTo(20, 0);
+    path.lineTo(size.width, 0);
+    path.lineTo(size.width, size.height);
+    path.moveTo(0, size.height / 2);
+    path.lineTo(20, size.height);
+    path.lineTo(size.width, size.height);
+    path.close();
+    // path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
+    return true; //
+  }
+}
+
+class BorderShapeRemove extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final Paint borderPaint = Paint()
+      ..color = Colors.black // رنگ حاشیه
+      ..strokeWidth = 5 // ضخامت خطوط
+      ..style = PaintingStyle.stroke // فقط خط بکشد
+      ..strokeJoin = StrokeJoin.round; // لبه‌ها را نرم‌تر می‌کند
+
+    final Path path = Path();
+    path.moveTo(0, size.height / 2);
+    path.lineTo(20, 0);
+    path.lineTo(size.width, 0);
+    path.lineTo(size.width, size.height);
+    path.lineTo(20, size.height);
+    path.lineTo(0, size.height / 2);
+
+    path.close(); // مسیر را می‌بندد و از نشت خطوط جلوگیری می‌کند
+    canvas.drawPath(path, borderPaint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
     return false;
   }
 }

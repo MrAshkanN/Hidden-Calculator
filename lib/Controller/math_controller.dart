@@ -18,9 +18,9 @@ class MathController extends GetxController {
     //  length text without last symbol
     final int lengthText = displayText.value.length - 1;
 
+    final String lastCharacterDisplay =
+        displayText.value == '' ? '' : displayText.value.substring(lengthText);
     if (text == '=') {
-      final String lastCharacterDisplay =
-          displayText.value.substring(lengthText);
       if (lastCharacterDisplay.contains(regex)) {
         return;
       }
@@ -42,6 +42,14 @@ class MathController extends GetxController {
       }
     }
     displayText.value += text;
+  }
+
+  void backspace() {
+    final text = displayText.value;
+    if (text.isEmpty) {
+      return;
+    }
+    displayText.value = text.substring(0, text.length - 1);
   }
 
   void clearCalculator() {
