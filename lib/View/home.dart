@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hidden_app/Controller/math_controller.dart';
+import 'package:hidden_app/View/layouts/main_scaffold.dart';
 
 class Home extends StatelessWidget {
   Home({super.key});
   final mathController = Get.put(MathController());
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 13.0, vertical: 10.0),
+    return MainScaffold(
+      child: Directionality(
+        textDirection: TextDirection.ltr,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -22,33 +22,7 @@ class Home extends StatelessWidget {
               balance: mathController.displayText.value,
             ),
             const SizedBox(height: 10),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: InkWell(
-                onTap: () {
-                  mathController.backspace();
-                },
-                child: CustomPaint(
-                  painter: BorderShapeRemove(),
-                  child: ClipPath(
-                    clipper: ShapeRemove(),
-                    child: Container(
-                      width: 80,
-                      height: 40,
-                      padding: const EdgeInsets.only(right: 5),
-                      decoration: const BoxDecoration(
-                        color: Color.fromARGB(255, 200, 199, 199),
-                      ),
-                      child: const Align(
-                          alignment: Alignment.centerRight,
-                          child: Icon(
-                            Icons.close,
-                          )),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            backspace(),
             Expanded(
               child: Align(
                 alignment: Alignment.bottomCenter,
@@ -58,7 +32,37 @@ class Home extends StatelessWidget {
           ],
         ),
       ),
-    ));
+    );
+  }
+
+  Align backspace() {
+    return Align(
+      alignment: Alignment.bottomRight,
+      child: GestureDetector(
+        onTap: () {
+          mathController.backspace();
+        },
+        child: CustomPaint(
+          painter: BorderShapeRemove(),
+          child: ClipPath(
+            clipper: ShapeRemove(),
+            child: Container(
+              width: 70,
+              height: 40,
+              padding: const EdgeInsets.only(right: 5),
+              decoration: const BoxDecoration(
+                color: Color.fromARGB(255, 200, 199, 199),
+              ),
+              child: const Align(
+                  alignment: Alignment.centerRight,
+                  child: Icon(
+                    Icons.close,
+                  )),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -153,6 +157,9 @@ class KeyWords extends StatelessWidget {
         isPress.value = true;
       },
       onTapUp: (details) {
+        isPress.value = false;
+      },
+      onTapCancel: () {
         isPress.value = false;
       },
       child: Obx(
