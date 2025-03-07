@@ -3,13 +3,24 @@ import 'package:get/get.dart';
 import 'package:hidden_app/View/home.dart';
 import 'package:hidden_app/View/setup.dart';
 import 'package:hidden_app/utils/colors.dart';
+import 'package:hidden_app/utils/share.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final SharedPreferences share = await Share().shareInstance;
+  final String? password = share.getString('password');
+  bool homePage = true;
+  if(password == null || password == ''){
+     homePage = false;
+  }
+  runApp(MyApp(homePage: homePage,));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool homePage;
+  const MyApp({super.key, this.homePage = false});
 
   // This widget is the root of your application.
   @override
@@ -29,7 +40,7 @@ class MyApp extends StatelessWidget {
                   backgroundColor: AppColors.background,
                   textStyle:
                       const TextStyle(color: Colors.white, fontSize: 20)))),
-      initialRoute: '/setup',
+      initialRoute: homePage ? '/home' : '/setup',
       getPages: [
         GetPage(name: '/home', page: () => Home()),
         GetPage(name: '/setup', page: () => Setup())

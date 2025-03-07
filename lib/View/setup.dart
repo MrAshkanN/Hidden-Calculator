@@ -27,7 +27,10 @@ class Setup extends StatelessWidget {
               height: 50,
               width: double.infinity,
               child: ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () async {
+                    await setupController.savePassword();
+                    Get.offAllNamed('/home');
+                  },
                   icon: const Icon(Icons.forward, color: Colors.white),
                   label: const Text(
                     'تایید رمز و ادامه',
