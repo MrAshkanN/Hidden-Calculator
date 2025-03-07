@@ -22,7 +22,10 @@ class MainScaffold extends StatelessWidget {
             appBar: activeAppBar
                 ? AppBar(
                     backgroundColor: const Color(0xFFe29647),
-                    title: Text(title),
+                    title: Text(
+                      title,
+                      style: const TextStyle(color: Colors.white, fontSize: 23),
+                    ),
                     centerTitle: true,
                     toolbarHeight: 56,
                   )

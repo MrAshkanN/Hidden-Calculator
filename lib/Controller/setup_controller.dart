@@ -9,4 +9,19 @@ class SetupController extends GetxController {
     password.dispose();
     super.onClose();
   }
+
+  void addNumber(String text) {
+    if (text == 'remove') {
+      if (password.text.isEmpty) {
+        return;
+      }
+      password.text = password.text.substring(0, password.text.length - 1);
+      return;
+    }
+    password.text += text.toString();
+  }
+
+  void removeAll() {
+    password.text = '';
+  }
 }
